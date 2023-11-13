@@ -2,8 +2,9 @@ package com.example.metactivity;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface OpenWeatherServices {
-    @GET("q=Annecy&appid=e075a0b59517e88cc46940bb262add13&units=metric")
-    Call<Forecast> getForcast();
+    @GET("forecast?")
+    Call<ForecastData> getForcast(@Query("q") String city, @Query("appid") String appid, @Query("units") String metric);
 }

@@ -3,6 +3,7 @@ package com.example.metactivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.View;
 import android.widget.Toast;
 
@@ -39,8 +40,17 @@ public class MainActivity extends AppCompatActivity {
                        if (response.isSuccessful()) {
                            forecastData = response.body();
                            if (forecastData != null && forecastData.getForecasts() != null && forecastData.getForecasts().size() > 0) {
-                               binding.textViewTemp.setText("La température extérieur sera de : " + String.format("%.2f", forecastData.getForecasts().get(0).getMain().getTemperature()));
+                               String temp = String.format("%.2f", forecastData.getForecasts().get(0).getMain().getTemperature());
+                               binding.textViewTemp.setText("La température extérieur sera de : " + temp);
                                binding.textView.setText(ChoixVille);
+                               double tempT = forecastData.getForecasts().get(0).getMain().getTemperature();
+                               if (tempT > 30) {
+                                   binding.textViewActivite.setText("1 - Eviter d'aller courire");
+                               } else if (tempT > 20 && tempT < 30) {
+                                   binding.textViewActivite.setText("1 - Aller courire");
+                               } else if (tempT > 0 && tempT < 15) {
+                                   binding.textViewActivite.setText("1- Aller skier");
+                               }
                            }
                            else {
                                Toast.makeText(MainActivity.this, "Aucune donnée météo disponible pour cette ville", Toast.LENGTH_SHORT).show();

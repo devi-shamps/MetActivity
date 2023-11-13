@@ -116,4 +116,14 @@
         app:layout_constraintTop_toTopOf="@+id/textViewAlerte"
         app:layout_constraintVertical_bias="0.050000012" />
 
+    <TextView
+        android:id="@+id/textViewActivite"
+        android:layout_width="349dp"
+        android:layout_height="319dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

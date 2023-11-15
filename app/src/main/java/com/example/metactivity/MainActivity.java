@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private String ChoixVille;
     private ForecastData forecastData;
+    private String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,17 @@ public class MainActivity extends AppCompatActivity {
                                binding.textView.setText(ChoixVille);
                                double tempT = forecastData.getForecasts().get(0).getMain().getTemperature();
                                if (tempT > 30) {
-                                   binding.textViewActivite.setText("1 - Eviter d'aller courire");
+                                   text = "1 - Eviter d'aller courire";
                                } else if (tempT > 20 && tempT < 30) {
-                                   binding.textViewActivite.setText("1 - Aller courire");
+                                   text = "1 - Aller courire";
                                } else if (tempT > 0 && tempT < 15) {
-                                   binding.textViewActivite.setText("1- Aller skier");
+                                   text = "1- Petit cinéma";
+                               } else if (tempT < -1 && tempT > -6) {
+                                   text = "Aller en montagne pour skier ";
+                               } else if (tempT < -6) {
+                                   text = "Aller faire du patins à glace sur un lac gelée entourer d'ourse polaire";
                                }
+                               binding.textViewActivite.setText(text);
                            }
                            else {
                                Toast.makeText(MainActivity.this, "Aucune donnée météo disponible pour cette ville", Toast.LENGTH_SHORT).show();
